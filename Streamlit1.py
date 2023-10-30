@@ -186,7 +186,6 @@ df['categorie_delit'] = df['libellé index'].apply(categorize_crime)
 
     
     
-df['categorie'] = df['libellé index'].apply(categorize_crime)
 
 
 
