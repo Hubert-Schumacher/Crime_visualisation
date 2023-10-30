@@ -2,3 +2,4 @@ matplotlib
 seaborn
 openpyxl
 pandas
+streamlit
