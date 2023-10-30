@@ -165,21 +165,21 @@ def categorize_crime(crime):
     elif any(substring in crime for substring in ["Stupéfiants"]):
         return "Drogues et stupéfiants"
     
-# Destructions
-elif any(substring in crime for substring in ["Incendies", "Attentats", "Destructions", "Dégradations"]):
-    return "Destructions et dégradations"
+    # Destructions et dégradations
+    elif any(substring in crime for substring in ["Incendies", "Attentats", "Destructions", "Dégradations"]):
+        return "Destructions et dégradations"
 
-# Infractions liées aux étrangers
-elif any(substring in crime for substring in ["étrangers", "séjour des étrangers"]):
-    return "Infractions liées aux étrangers"
+    # Infractions liées aux étrangers
+    elif any(substring in crime for substring in ["étrangers", "séjour des étrangers"]):
+        return "Infractions liées aux étrangers"
 
-# Infractions économiques et financières
-elif any(substring in crime for substring in ["Banqueroutes", "Fraudes fiscales", "Escroqueries", "Abus de biens sociaux"]):
-    return "Infractions économiques et financières"
+    # Infractions économiques et financières
+    elif any(substring in crime for substring in ["Banqueroutes", "Fraudes fiscales", "Escroqueries", "Abus de biens sociaux"]):
+        return "Infractions économiques et financières"
 
-# Autres délits
-else:
-    return "Autres délits"
+    # Autres délits
+    else:
+        return "Autres délits"
 
 # Ajout de la colonne de catégorie dans le DataFrame
 df['categorie_delit'] = df['libellé index'].apply(categorize_crime)
