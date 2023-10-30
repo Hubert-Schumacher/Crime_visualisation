@@ -193,15 +193,17 @@ df['categorie_delit'] = df['libellé index'].apply(categorize_crime)
 
 years = ["total_2014", "total_2015", "total_2016", "total_2017", "total_2018", "total_2019", "total_2020", "total_2021", "total_2022"]
 
-# Pour chaque année
-for year in years:
-    # Préparation des données en excluant "Autres délits"
-    crime_counts = df[df['categorie'] != "Autres délits"].groupby('categorie')[year].sum()
+# Widget Streamlit pour sélectionner l'année
+selected_year = st.selectbox('Choisissez une année:', years)
 
-    # Création du graphique en camembert
-    plt.figure(figsize=(10, 7))
-    plt.pie(crime_counts, labels=crime_counts.index, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("pastel", len(crime_counts)))
-    plt.title(f"Répartition des types de crimes pour {year}")
-    st.pyplot(plt)
+# Préparation des données pour l'année sélectionnée, en excluant "Autres délits"
+crime_counts = df[df['categorie'] != "Autres délits"].groupby('categorie')[selected_year].sum()
 
+# Création du graphique en camembert pour l'année sélectionnée
+plt.figure(figsize=(10, 7))
+plt.pie(crime_counts, labels=crime_counts.index, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("pastel", len(crime_counts)))
+plt.title(f"Répartition des types de crimes pour {selected_year}")
+
+# Affichage du graphique dans Streamlit
+st.pyplot(plt)
 
